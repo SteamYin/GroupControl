@@ -23,8 +23,8 @@ public class Flow {
     public String memo;     // 流程说明
     private int restart;     // 表示每运行restart个app后重启多开应用
     public boolean capscreen = false;   // 是否每一步操作之前做一次截屏
-    private int maxtrytimes = 3;     // 表示最大尝试次数，即每一步操作次数不能超过指定数
-    private int timeout = 0;         // 超时时间，秒为单位
+    public int maxtrytimes = 3;     // 表示最大尝试次数，即每一步操作次数不能超过指定数
+    public int timeout = 0;         // 超时时间，秒为单位
     private static Logger logger = LogManager.getLogger(Flow.class);
 
     public Flow(int type, String scriptfile, String screensize){
