@@ -1,5 +1,6 @@
 package models;
 
+
 import common.Const;
 import models.actions.*;
 import org.apache.logging.log4j.LogManager;
@@ -14,16 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flow {
-    public int type;
+    public int type;    // 流程类型
     public String name;
     public List<Action> listAction;
-    public String mobile;   // 流程配置时所使用的手机型号
+    private String mobile;   // 流程配置时所使用的手机型号
     public Screen screen;       // 配置手机屏幕宽度x高度
     public String memo;     // 流程说明
-    public int restart;     // 表示每运行restart个app后重启多开应用
+    private int restart;     // 表示每运行restart个app后重启多开应用
     public boolean capscreen = false;   // 是否每一步操作之前做一次截屏
-    public int maxtrytimes = 3;     // 表示最大尝试次数，即每一步操作次数不能超过指定数
-    public int timeout = 0;         // 超时时间，秒为单位
+    private int maxtrytimes = 3;     // 表示最大尝试次数，即每一步操作次数不能超过指定数
+    private int timeout = 0;         // 超时时间，秒为单位
     private static Logger logger = LogManager.getLogger(Flow.class);
 
     public Flow(int type, String scriptfile, String screensize){
@@ -41,7 +42,7 @@ public class Flow {
 
             InputStreamReader reader = new InputStreamReader(new FileInputStream(f), "GBK");
             BufferedReader br = new BufferedReader(reader);
-            String s = null;
+            String s = "";
             String actionMemo = "";
             int stepid = 1;
             listAction = new ArrayList<>();
@@ -81,7 +82,7 @@ public class Flow {
                         actionMemo = "";
                     }
                     else if(ss[0].equals("capscreen")){
-                        this.capscreen = ss.length >= 2 ? ss[1].equals("true") : false;
+                        this.capscreen = ss.length >= 2 && ss[1].equals("true");
                         actionMemo = "";
                     }
                     else if(ss[0].equals("maxtrytimes")){
@@ -149,7 +150,6 @@ public class Flow {
                         stepid++;
                         actionMemo = "";
                     }
-
                     else if(ss[0].equals("assign")){
                         listAction.add(new AssignAction(name, stepid, actionMemo,this, ss));
                         stepid++;
@@ -160,6 +160,8 @@ public class Flow {
                         stepid++;
                         actionMemo = "";
                     }
+
+
                     else if(ss[0].equals("compare")){
                         listAction.add(new CompareAction(name, stepid, actionMemo,this, ss));
                         stepid++;
