@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Flow {
     public int type;    // 流程类型
-    public String name;
+    public String name; // 流程名称
 
     public List<Action> listAction;
     private String mobile;   // 流程配置时所使用的手机型号
