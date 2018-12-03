@@ -17,6 +17,7 @@ import java.util.List;
 public class Flow {
     public int type;    // 流程类型
     public String name;
+
     public List<Action> listAction;
     private String mobile;   // 流程配置时所使用的手机型号
     public Screen screen;       // 配置手机屏幕宽度x高度
