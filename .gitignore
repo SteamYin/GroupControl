@@ -5,6 +5,7 @@
 # IntelliJ project files
 .idea
 *.iml
+application.properties
 out
 .gitignore
 logs/
