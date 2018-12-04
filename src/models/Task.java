@@ -196,36 +196,46 @@ public class Task implements Cloneable {
 
                 if(runFail) break;
 
-                if(action.type == Const.ActionType.OCR
-                        || action.type == Const.ActionType.POSITION
-                        || action.type == Const.ActionType.GOTO
-                        || action.type == Const.ActionType.RGB
-                        || action.type == Const.ActionType.DIVIDE
-                        || action.type == Const.ActionType.ASSIGN
-                        || action.type == Const.ActionType.COMPARE
-                        || action.type == Const.ActionType._FINDGROUP){
-                    if(CommonUtils.isNull(stepName)) action = flow.getNextAction(action.stepid);
-                    else if(stepName.equals("__SUCCESS__")){
-                        logMesg("[]应用流程执行成功!");
-                        action = flow.getActionByName(stepName);
-                        if(action == null) action = flow.getActionByName("last");
-                    }
-                    else if(stepName.equals("__FAIL__")){
-//                        action = flow.getNextAction(action.stepid);
-                        logMesg("应用流程执行失败!");
-                        action = flow.getActionByName(stepName);
-                        if(action == null) action = flow.getActionByName("last");
-                    }
-                    else if(stepName.equals("__FAIL_LAST__")){
-//                        action = flow.getNextAction(action.stepid);
-                        logMesg("应用流程执行失败!");
-                        action = flow.getActionByName(stepName);
-                        if(action == null) action = flow.getActionByName("last");
-                    }
-                    else action = flow.getActionByName(stepName);
+//                if(action.type == Const.ActionType.OCR
+//                        || action.type == Const.ActionType.POSITION
+//                        || action.type == Const.ActionType.GOTO
+//                        || action.type == Const.ActionType.RGB
+//                        || action.type == Const.ActionType.DIVIDE
+//                        || action.type == Const.ActionType.ASSIGN
+//                        || action.type == Const.ActionType.COMPARE
+//                        || action.type == Const.ActionType._FINDGROUP){
+                if(CommonUtils.isNull(stepName)) action = flow.getNextAction(action.stepid);
+                else if(stepName.equals("__SUCCESS__")){
+                    logMesg("[]应用流程执行成功!");
+                    action = flow.getActionByName(stepName);
+                    if(action == null) action = flow.getActionByName("last");
                 }
-                else
-                    action = flow.getNextAction(action.stepid);
+                else if(stepName.equals("__FAIL__")){
+//                        action = flow.getNextAction(action.stepid);
+                    logMesg("应用流程执行失败!");
+                    action = flow.getActionByName(stepName);
+                    if(action == null) action = flow.getActionByName("last");
+                }
+                else if(stepName.equals("__FAIL_LAST__")){
+//                        action = flow.getNextAction(action.stepid);
+                    logMesg("应用流程执行失败!");
+                    action = flow.getActionByName(stepName);
+                    if(action == null) action = flow.getActionByName("last");
+                }
+                else {
+                    String[] fs = stepName.split(":");
+                    if(fs.length == 1) action = flow.getActionByName(stepName);
+                    else{
+                        // 跳转到其他流程的指定状态下
+                        type = Integer.parseInt(fs[0]);
+                        flow = getFlow();
+                        if(flow == null || flow.listAction == null) return false;
+                        action = flow.getActionByName(fs[1]);
+                    }
+                }
+//                }
+//                else
+//                    action = flow.getNextAction(action.stepid);
 
             }
             logMesg("应用流程[" + flow.memo + "]执行结束，耗时" + (System.currentTimeMillis() / 1000 - start) + "秒");

@@ -1,0 +1,21 @@
+#–Ë±£¥Ê≥…GBK£¨º¥ANSI±‡¬Î
+memo ≤‚ ‘
+mobile MI 5S Plus
+screen 1080x1920
+restart 50
+capscreen true
+
+launch 2
+sleep 8000
+
+#read:_readqtt [aa] next fail
+read:_readdftt [aa] next fail
+
+next:tap 1 [aa]
+sleep 3000
+goto read
+
+#swipe 300,800 300,400 3000
+#sleep 6000
+
+#swipe 300,1300 300,800 3000
