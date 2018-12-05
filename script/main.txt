@@ -2,20 +2,10 @@
 memo 测试
 mobile MI 5S Plus
 screen 1080x1920
-restart 50
-capscreen true
+capscreen false
 
-launch 2
-sleep 8000
+#获取任务流程id
+start:_getflow [flow] ok __FAIL__
 
-#read:_readqtt [aa] next fail
-read:_readdftt [aa] next fail
-
-next:tap 1 [aa]
-sleep 3000
-goto read
-
-#swipe 300,800 300,400 3000
-#sleep 6000
-
-#swipe 300,1300 300,800 3000
+#进入任务流程
+goto [flow]

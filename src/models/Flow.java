@@ -99,6 +99,11 @@ public class Flow {
                         stepid++;
                         actionMemo = "";
                     }
+                    else if(ss[0].equals("kill")){
+                        listAction.add(new KillAction(name, stepid, actionMemo,this, ss));
+                        stepid++;
+                        actionMemo = "";
+                    }
                     else if(ss[0].equals("sleep")){
                         listAction.add(new SleepAction(name, stepid, actionMemo,this, ss));
                         stepid++;
@@ -216,9 +221,9 @@ public class Flow {
         return null;
     }
 
-    public void resetTryTimes(){
-        for(Action action: listAction){
-            action.resetTryTimes();
-        }
-    }
+//    public void resetTryTimes(){
+//        for(Action action: listAction){
+//            action.resetTryTimes();
+//        }
+//    }
 }

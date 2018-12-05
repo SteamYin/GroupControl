@@ -1,10 +1,15 @@
 package models;
 
+import com.alibaba.fastjson.JSONArray;
 import common.Const;
 import sample.Controller;
 import utils.ADBUtils;
 import utils.CommonUtils;
 import utils.ConfigUtils;
+
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.List;
 
 public class Device implements Comparable<Device> {
     public String serialnumber;
@@ -21,6 +26,30 @@ public class Device implements Comparable<Device> {
     public int port = 0;
     public int appcount = 0;
     public Task task = null;
+
+    private String day = "";
+
+    private class FlowTimeLen{
+        private int type;
+        private int timelen;
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
+        public int getTimelen() {
+            return timelen;
+        }
+
+        public void setTimelen(int timelen) {
+            this.timelen = timelen;
+        }
+    }
+
+    private List<FlowTimeLen> listFlowTimeLen = null;
 
 
     public Device(String serialnumber, boolean byconfig, Controller controller) {
@@ -48,6 +77,7 @@ public class Device implements Comparable<Device> {
             this.status = Const.DeviceStatus.OFFLINE;
 
             this.task = readTask();
+            this.listFlowTimeLen = readFlowTimeLen();
             return true;
         } else {
             this.model = ADBUtils.getModel(serialnumber);
@@ -55,10 +85,26 @@ public class Device implements Comparable<Device> {
             this.brand = ADBUtils.getBrand(serialnumber);
             this.screen = ADBUtils.getScreen(serialnumber);
             setStatus(Const.DeviceStatus.CONNECTTION);
+            this.listFlowTimeLen = readFlowTimeLen();
             return (this.model != null && this.version != null && this.brand != null);
         }
     }
 
+    private List<FlowTimeLen> readFlowTimeLen(){
+        return null;
+    }
+
+    private void writeFlowTimeLen(){
+
+    }
+
+    public int getFlowType() {
+        return 0;
+    }
+
+    public void addFlowTimeLen(long time_lenght){
+        
+    }
     private Task readTask(){
         String key = "Task_" + this.serialnumber;
         String value = ConfigUtils.getConfigValue(key);

@@ -161,7 +161,7 @@ public class Task implements Cloneable {
             // 执行流程
             logMesg("应用流程[" + flow.memo + "]开始执行...");
             long start = System.currentTimeMillis() / 1000;
-            flow.resetTryTimes();
+//            flow.resetTryTimes();
             dicKeyValue = null;    // 用于保存流程变量
             this.capscreenname = "";
             Action action = flow.getNextAction(0);
@@ -172,17 +172,18 @@ public class Task implements Cloneable {
                     return true;
                 }
 
-                if(action.trytimes >= flow.maxtrytimes) {
-                    logMesg("应用流程[" + flow.memo + "]执行超过最大尝试次数，停止执行！");
-
-                    action = flow.getActionByName("last");
-//                    appidlist_fail.add(appid);
-                    runFail = true;
-                }
-                else if(flow.timeout > 0 && (System.currentTimeMillis() / 1000 - start) > flow.timeout){
+//                if(action.trytimes >= flow.maxtrytimes) {
+//                    logMesg("应用流程[" + flow.memo + "]执行超过最大尝试次数，停止执行！");
+//
+//                    action = flow.getActionByName("last");
+////                    appidlist_fail.add(appid);
+//                    runFail = true;
+//                }
+//                else
+                if(flow.timeout > 0 && (System.currentTimeMillis() / 1000 - start) > flow.timeout){
                     logMesg("应用流程[" + flow.memo + "]执行超时，停止执行！");
                     //break;
-                    action = flow.getActionByName("last");
+                    action = flow.getActionByName("timeout");
                     runFail = true;
                 }
 
@@ -206,7 +207,7 @@ public class Task implements Cloneable {
 //                        || action.type == Const.ActionType._FINDGROUP){
                 if(CommonUtils.isNull(stepName)) action = flow.getNextAction(action.stepid);
                 else if(stepName.equals("__SUCCESS__")){
-                    logMesg("[]应用流程执行成功!");
+                    logMesg("应用流程执行成功!");
                     action = flow.getActionByName(stepName);
                     if(action == null) action = flow.getActionByName("last");
                 }
@@ -216,20 +217,27 @@ public class Task implements Cloneable {
                     action = flow.getActionByName(stepName);
                     if(action == null) action = flow.getActionByName("last");
                 }
-                else if(stepName.equals("__FAIL_LAST__")){
-//                        action = flow.getNextAction(action.stepid);
-                    logMesg("应用流程执行失败!");
-                    action = flow.getActionByName(stepName);
-                    if(action == null) action = flow.getActionByName("last");
-                }
+//                else if(stepName.equals("__FAIL_LAST__")){
+////                        action = flow.getNextAction(action.stepid);
+//                    logMesg("应用流程执行失败!");
+//                    action = flow.getActionByName(stepName);
+//                    if(action == null) action = flow.getActionByName("last");
+//                }
                 else {
                     String[] fs = stepName.split(":");
                     if(fs.length == 1) action = flow.getActionByName(stepName);
                     else{
                         // 跳转到其他流程的指定状态下
-                        type = Integer.parseInt(fs[0]);
-                        flow = getFlow();
-                        if(flow == null || flow.listAction == null) return false;
+                        int _type = Integer.parseInt(fs[0]);
+                        if(_type != type) {
+                            type = _type;
+                            // 流程变了，重新开始计时
+                            logMesg("跳转到流程["+type+"]!");
+                            flow = getFlow();
+                            if (flow == null || flow.listAction == null) return false;
+
+                            start = System.currentTimeMillis() / 1000;
+                        }
                         action = flow.getActionByName(fs[1]);
                     }
                 }
