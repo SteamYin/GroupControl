@@ -23,7 +23,7 @@ public class _ReadDFTTAction extends Action {
     private static Logger logger = LogManager.getLogger(_ReadDFTTAction.class);
     public _ReadDFTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
         super(name, stepid, memo, flow);
-        this.type = Const.ActionType._FINDGROUP;
+        this.type = Const.ActionType._READ_DFTT;
         this.tag = "readdftt";
 
         if(param.length < 3) return;

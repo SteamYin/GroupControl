@@ -23,7 +23,7 @@ public class _PlayQTTAction extends Action {
     private static Logger logger = LogManager.getLogger(_PlayQTTAction.class);
     public _PlayQTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
         super(name, stepid, memo, flow);
-        this.type = Const.ActionType._FINDGROUP;
+        this.type = Const.ActionType._PLAY_QTT;
         this.tag = "playqtt";
 
         if(param.length < 3) return;

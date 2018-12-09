@@ -12,7 +12,7 @@ public class Action {
     public String tag;
     public String memo;     // 动作描述，备注
     public int stepid;      // 第几步
-    public int trytimes;    // 执行次数
+//    public int trytimes;    // 执行次数
     protected Flow flow;
 
     public Action(String name, int stepid, String memo, Flow flow) {
@@ -20,19 +20,19 @@ public class Action {
         this.stepid = stepid;
         this.memo = memo;
         this.flow = flow;
-        this.trytimes = 0;
+//        this.trytimes = 0;
     }
 
-    public void resetTryTimes(){
-        this.trytimes = 0;
-    }
+//    public void resetTryTimes(){
+//        this.trytimes = 0;
+//    }
 
     public String doAction(Device device) {
         if (device == null || device.task == null) return "";
         // sleep之后截屏内容会改变
         if (this.type == Const.ActionType.SLEEP) device.task.capscreenname = "";
 
-        trytimes++;
+//        trytimes++;
 
         if (this.type == Const.ActionType.SLEEP
                 || this.type == Const.ActionType.LAUNCH

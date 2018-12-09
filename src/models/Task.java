@@ -191,8 +191,15 @@ public class Task implements Cloneable {
                 if (action.type != Const.ActionType.SLEEP)
                     logMesg("执行流程中第" + action.stepid + "步["+action.tag+"]" + (CommonUtils.isNull(action.memo)?"":(":"+action.memo)));
                 stepid = action.stepid;
+
+                long startAction = System.currentTimeMillis() / 1000;
                 String stepName = action.doAction(device);
-//                System.out.println("====capscreenname::::"+device.task.capscreenname);
+                if(action.type == Const.ActionType._READ_QTT
+                    || action.type == Const.ActionType._PLAY_QTT){
+                    long endAction = System.currentTimeMillis() / 1000;
+                    device.addFlowTimeLen(flow.type, endAction - startAction);
+                }
+
                 if (controller != null) controller.updateTaskShow(device.serialnumber, false);
 
                 if(runFail) break;

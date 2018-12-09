@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/script/1080x2040/signup_1day.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/1080x2040/signup_7day.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/1080x2040/sync_step.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/demo.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/realname.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/signup_1day.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/signup_7day_continue.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/signup_7day_first.txt" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/script/task_data.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/script/main.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/script/qtt_video.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/script/qtt_view.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/script/test.txt" charset="GBK" />
   </component>
 </project>

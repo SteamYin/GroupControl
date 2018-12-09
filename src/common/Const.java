@@ -45,7 +45,12 @@ public class Const {
         public static final int COMPARE = 14;
 
         // 以下是业务动作，即将业务逻辑写死在动作里
-        public static final int _FINDGROUP = 101;
+        public static final int _GET_FLOW = 101;
+        public static final int _READ_QTT = 102;
+        public static final int _PLAY_QTT = 103;
+        public static final int _READ_DFTT = 104;
+        public static final int _PLAY_DFTT = 105;
+
     }
 //    public class TaskStatus{
 //        public static final int STOP = 0;        // 停止

@@ -8,4 +8,4 @@ capscreen false
 start:_getflow [flow] ok __FAIL__
 
 #进入任务流程
-goto [flow]
+ok:goto [flow]

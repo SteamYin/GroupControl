@@ -27,7 +27,7 @@ public class _ReadQTTAction extends Action {
     private static Logger logger = LogManager.getLogger(_ReadQTTAction.class);
     public _ReadQTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
         super(name, stepid, memo, flow);
-        this.type = Const.ActionType._FINDGROUP;
+        this.type = Const.ActionType._PLAY_QTT;
         this.tag = "readqtt";
 
         if(param.length < 3) return;
@@ -46,6 +46,7 @@ public class _ReadQTTAction extends Action {
         super.doAction(device);
         // 超过5分钟就会提醒阅读这篇文章时间太长
 
+        long start = System.currentTimeMillis() / 1000;
         // 先判断是否为广告
         device.task.capscreenname = ADBUtils.screenCap(device.serialnumber,device.getDeviceName(),
                 device.task.name, false);
@@ -57,6 +58,8 @@ public class _ReadQTTAction extends Action {
         int n = 0;
 
         while(n++ < 20){
+            long now = System.currentTimeMillis() / 1000;
+            if(now - start >= 300) return step2;    // 超出5分钟，需要返回到主流程
             sleep(3000);
 //            ADBUtils.swipeInput(device.serialnumber, 600, 1770, 620, 190, 2000);
             ADBUtils.swipeInput(device.serialnumber, 600, 1770, 620, 590, 2000);

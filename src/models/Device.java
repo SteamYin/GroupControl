@@ -1,5 +1,6 @@
 package models;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import common.Const;
 import sample.Controller;
@@ -8,6 +9,7 @@ import utils.CommonUtils;
 import utils.ConfigUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
 
@@ -23,15 +25,28 @@ public class Device implements Comparable<Device> {
     public int status;      // 状态 0：掉线；1：正在对接终端；2：正常/空闲；3：执行任务
     public Controller controller;
 
-    public int port = 0;
     public int appcount = 0;
     public Task task = null;
 
-    private String day = "";
-
     private class FlowTimeLen{
         private int type;
-        private int timelen;
+        private long timelen;
+        private long maxtime;
+
+        public FlowTimeLen(int type, long timelen, long maxtime){
+            this.maxtime = maxtime;
+            this.timelen = timelen;
+            this.type = type;
+        }
+
+        public long getMaxtime() {
+            return maxtime;
+        }
+
+        public void setMaxtime(long maxtime) {
+            this.maxtime = maxtime;
+        }
+
         public int getType() {
             return type;
         }
@@ -40,11 +55,11 @@ public class Device implements Comparable<Device> {
             this.type = type;
         }
 
-        public int getTimelen() {
+        public long getTimelen() {
             return timelen;
         }
 
-        public void setTimelen(int timelen) {
+        public void setTimelen(long timelen) {
             this.timelen = timelen;
         }
     }
@@ -90,21 +105,75 @@ public class Device implements Comparable<Device> {
         }
     }
 
+    /**
+     * 从配置里读取流程执行时长
+     * @return
+     */
     private List<FlowTimeLen> readFlowTimeLen(){
-        return null;
+        String key = "FlowTimeLen_" + this.serialnumber;
+        String value = ConfigUtils.getConfigValue(key);
+        if (value == null) return initFlowTimeLen();
+        String key_date = "FlowTimeLenDay_" + this.serialnumber;
+        String value_date = ConfigUtils.getConfigValue(key_date);
+        if (value_date == null || !value_date.equals(CommonUtils.date2String(new Date(), "yyyy-MM-dd"))) return initFlowTimeLen();
+
+        return JSON.parseArray(value, FlowTimeLen.class);
     }
 
+    private List<FlowTimeLen> initFlowTimeLen() {
+        List<FlowTimeLen> flowTimeLens = new ArrayList<>();
+
+        // 趣头条新闻
+        flowTimeLens.add(new FlowTimeLen(2, 0, 3000));
+
+        // 趣头条视频
+       // flowTimeLens.add(new FlowTimeLen(3, 0, 3000));
+
+        return flowTimeLens;
+    }
+
+
+    /**
+     * 写入配置文件
+     */
     private void writeFlowTimeLen(){
-
+        ConfigUtils.setConfigValue("FlowTimeLenDay_" + this.serialnumber, CommonUtils.date2String(new Date(), "yyyy-MM-dd"));
+        ConfigUtils.setConfigValue("FlowTimeLen_" + this.serialnumber, JSON.toJSONString(listFlowTimeLen), true);
     }
 
+    /**
+     * 取一个流程执行
+     * @return
+     */
     public int getFlowType() {
-        return 0;
+        if(listFlowTimeLen == null || listFlowTimeLen.size() == 0) return 0;
+
+        int index = CommonUtils.getRandomNum(0, listFlowTimeLen.size() - 1);
+        for(int i = 0; i < listFlowTimeLen.size(); i++){
+            int id = (i + index) % listFlowTimeLen.size();
+            FlowTimeLen flowTimeLen = listFlowTimeLen.get(id);
+            if(flowTimeLen.getTimelen() > flowTimeLen.getMaxtime()) continue;
+            return flowTimeLen.getType();
+        }
+
+        return listFlowTimeLen.get(index).getType();
     }
 
-    public void addFlowTimeLen(long time_lenght){
-        
+    /**
+     * 添加流程执行时长
+     * @param time_length
+     */
+    public void addFlowTimeLen(int type, long time_length){
+        for(FlowTimeLen flowTimeLen: listFlowTimeLen){
+            if(flowTimeLen.getType() != type) continue;
+
+            flowTimeLen.setTimelen(flowTimeLen.getTimelen() + time_length);
+            break;
+        }
+
+        writeFlowTimeLen();
     }
+
     private Task readTask(){
         String key = "Task_" + this.serialnumber;
         String value = ConfigUtils.getConfigValue(key);

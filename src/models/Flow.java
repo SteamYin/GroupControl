@@ -173,6 +173,11 @@ public class Flow {
                         stepid++;
                         actionMemo = "";
                     }
+                    else if(ss[0].equals("_getflow")){
+                        listAction.add(new _GetFlowAction(name, stepid, actionMemo,this, ss));
+                        stepid++;
+                        actionMemo = "";
+                    }
                     else if(ss[0].equals("_readqtt")){
                         listAction.add(new _ReadQTTAction(name, stepid, actionMemo,this, ss));
                         stepid++;

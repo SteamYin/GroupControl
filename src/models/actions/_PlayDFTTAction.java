@@ -23,7 +23,7 @@ public class _PlayDFTTAction extends Action {
     private static Logger logger = LogManager.getLogger(_PlayDFTTAction.class);
     public _PlayDFTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
         super(name, stepid, memo, flow);
-        this.type = Const.ActionType._FINDGROUP;
+        this.type = Const.ActionType._PLAY_DFTT;
         this.tag = "playdftt";
 
         if(param.length < 3) return;
