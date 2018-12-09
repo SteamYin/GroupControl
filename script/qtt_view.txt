@@ -6,16 +6,24 @@ timeout 1200
 capscreen true
 
 read:launch 1
-sleep 8000
+sleep 15000
 
-#read:_readqtt [aa] next fail
-continue:_readdftt [aa] next fail
+#首页，进入热点
+
+sleep 5000
+#随机选择一个
+
+sleep 8000
+#读文章，并且找下一篇文章
+continue:_readdftt [aa] next last
 
 next:tap 1 [aa]
+
 sleep 3000
 goto continue
 
-#swipe 300,800 300,400 3000
-#sleep 6000
+#流程超时
+timeout:goto last
 
-#swipe 300,1300 300,800 3000
+#结束进程
+last:kill 1
