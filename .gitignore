@@ -5,10 +5,10 @@
 # IntelliJ project files
 .idea
 *.iml
-application.properties
 out
 .gitignore
 logs/
 screens/
 temp/
 tesseract-Win64/tessdata/script/
+.idea/workspace.xml
