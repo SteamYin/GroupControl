@@ -31,6 +31,7 @@ public class Main extends Application {
 //        primaryStage.setScene(new Scene(root, 800, 600));
 //        primaryStage.show();
 
+        System.out.println("ddddddddddddddddddd");
         URL location = getClass().getResource("sample.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);

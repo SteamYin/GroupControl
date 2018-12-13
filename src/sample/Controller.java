@@ -453,7 +453,7 @@ public class Controller {
             dicFlowType.put(ft.getCode(), ft);
         }
         // 清除缓存系统默认
-        dicFlowType.put(Const.flow_type_clear, new FlowType(Const.flow_type_clear, "缓存清除", "clear_cache.txt", false));
+//        dicFlowType.put(Const.flow_type_clear, new FlowType(Const.flow_type_clear, "缓存清除", "clear_cache.txt", false));
     }
 
     public void loadFlow(){

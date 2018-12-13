@@ -165,7 +165,7 @@ public class Task implements Cloneable {
             dicKeyValue = null;    // 用于保存流程变量
             this.capscreenname = "";
             Action action = flow.getNextAction(0);
-            boolean runFail = false;
+//            boolean runFail = false;
             while(action != null){
                 if(this.status != Const.TaskStatus.RUNNING.getCode()) {
                     logMesg("应用流程[" + flow.memo + "]执行被暂停");
@@ -183,8 +183,9 @@ public class Task implements Cloneable {
                 if(flow.timeout > 0 && (System.currentTimeMillis() / 1000 - start) > flow.timeout){
                     logMesg("应用流程[" + flow.memo + "]执行超时，停止执行！");
                     //break;
+                    start = System.currentTimeMillis() / 1000;
                     action = flow.getActionByName("timeout");
-                    runFail = true;
+//                    runFail = true;
                 }
 
                 if(action == null) break;
@@ -202,7 +203,7 @@ public class Task implements Cloneable {
 
                 if (controller != null) controller.updateTaskShow(device.serialnumber, false);
 
-                if(runFail) break;
+//                if(runFail) break;
 
 //                if(action.type == Const.ActionType.OCR
 //                        || action.type == Const.ActionType.POSITION
@@ -231,7 +232,7 @@ public class Task implements Cloneable {
 //                    if(action == null) action = flow.getActionByName("last");
 //                }
                 else {
-                    String[] fs = stepName.split(":");
+                    String[] fs = stepName.split("-");
                     if(fs.length == 1) action = flow.getActionByName(stepName);
                     else{
                         // 跳转到其他流程的指定状态下

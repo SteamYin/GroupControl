@@ -30,7 +30,7 @@ public class ADBUtils {
 
         List<String> listDevice = new ArrayList<>();
         for (String s : result) {
-            if (s.equals("List of devices attached") || s.equals("")) continue;
+            if (s.indexOf("List of devices attached") != -1 || s.equals("")) continue;
             String[] ss = s.split("\t");
             //    System.out.println(ss[0]);
             listDevice.add(ss[0]);

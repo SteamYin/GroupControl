@@ -43,7 +43,7 @@ public class _GetFlowAction extends Action {
 
         int type = device.getFlowType();
         if(type > 0){
-            device.task.addKeyValue(key, type+":read");
+            device.task.addKeyValue(key, type+"-read");
             return step1;
         }
         else return step2;
