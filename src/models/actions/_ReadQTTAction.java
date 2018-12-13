@@ -165,13 +165,15 @@ public class _ReadQTTAction extends Action {
         if(rgb == null) return 0;
         int r = rgb.isLineColor();
         if(r == 0) return 0;
-//        System.out.println("("+x+","+y+"):"+rgb.toString());
+        if(r != -1)
+            System.out.println("("+x+","+y+"):"+rgb.toString());
 //        if(!rgb.equals(rgbLine1) && !rgb.equals(rgbLine2)) return rgb.equals(rgbWhite) ? -1 : 0;
         // 边上的要是白色
         if(r < minLine || r > maxLine) return r == -1 ? -1 : 0;
         rgb = getPixelRgb(file, 5, y);
 //        System.out.println("(5,"+y+"):"+rgb.toString());
 //        if(!rgb.equals(rgbWhite)) return 0;
+        r = rgb.isLineColor();
         if(r != -1) return 0;
 
         // 再横向找2个点，如果都是一样的话，则表示找到了

@@ -2,7 +2,7 @@
 memo 测试
 mobile MI 5S Plus
 screen 1080x1920
-timeout 60
+timeout 1200
 capscreen true
 
 read:launch 1
@@ -28,7 +28,7 @@ tap 1 486,538
 
 sleep 8000
 #读文章，并且找下一篇文章
-continue:_readdftt [aa] next last
+continue:_readqtt [aa] next last
 
 next:tap 1 [aa]
 
