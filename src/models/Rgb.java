@@ -36,6 +36,9 @@ public class Rgb {
         this.b = Integer.parseInt(ss[2]);
     }
 
+    public int isLineColor(){
+        return (this.r == this.b && this.r == this.g) ? this.r : 0;
+    }
     public boolean equals(Rgb rgb){
 //        if(this.r == -1 || rgb.r == -1
 //                || this.g == -1 || rgb.g == -1

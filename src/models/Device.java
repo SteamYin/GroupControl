@@ -124,13 +124,13 @@ public class Device implements Comparable<Device> {
         List<FlowTimeLen> flowTimeLens = new ArrayList<>();
 
         // 趣头条新闻
-//        flowTimeLens.add(new FlowTimeLen(2, 0, 3000));
+        flowTimeLens.add(new FlowTimeLen(2, 0, 3000));
 
         // 趣头条视频
        // flowTimeLens.add(new FlowTimeLen(3, 0, 3000));
 
         // 东方头条
-        flowTimeLens.add(new FlowTimeLen(4, 0, 3000));
+//        flowTimeLens.add(new FlowTimeLen(4, 0, 3000));
 
         return flowTimeLens;
     }
