@@ -15,16 +15,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Date;
 
-public class _ReadDFTTAction extends Action {
+public class _ReadHTTAction extends Action {
     private String key;      // 保存下一页的位置
     private String step1;   // 读完并找到下一页的位置
     private String step2;   // 广告或者读完，没找到下一页，需返回到首页
 
-    private static Logger logger = LogManager.getLogger(_ReadDFTTAction.class);
-    public _ReadDFTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
+    private static Logger logger = LogManager.getLogger(_ReadHTTAction.class);
+    public _ReadHTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
         super(name, stepid, memo, flow);
         this.type = Const.ActionType._READ_DFTT;
-        this.tag = "readdftt";
+        this.tag = "readhtt";
 
         if(param.length < 3) return;
         String s = param[1];
@@ -87,7 +87,7 @@ public class _ReadDFTTAction extends Action {
             if (point2 == null) return null;
 
             logger.info("找到分割线2："+point2.getY());
-            if (point1.getY() - point2.getY() > 280){
+            if (point1.getY() - point2.getY() > 420){
                 logger.info("分割线范围不对："+(point1.getY() - point2.getY()));
                 // 正常应该是255-265
                 point1 = point2;
@@ -133,9 +133,11 @@ public class _ReadDFTTAction extends Action {
             moveScreen(device);
             Rgb rgb = getPixelRgb(file, x, y);
             if(rgb == null){
-                y -= 4; continue;}
+                y -= 3;
+                continue;
+            }
 //            System.out.println("("+x+","+y+"):"+rgb.toString());
-            y -= 4;
+            y -= 3;
             if(!rgb.equals(rgbWhite)) return true;
         }
         return false;
@@ -148,15 +150,18 @@ public class _ReadDFTTAction extends Action {
      * @return 0：不是；1：是；-1：白色像素点
      */
     private int isLine(File file, int x, int y){
-        Rgb rgbLine1 = new Rgb(235, 235, 235);
-        Rgb rgbLine2 = new Rgb(244, 244, 244);
+//        Rgb rgbLine1 = new Rgb(235, 235, 235);
+//        Rgb rgbLine2 = new Rgb(244, 244, 244);
+        int minLine = 235;
+        int maxLine = 253;
         Rgb rgbWhite = new Rgb(-1,-1,-1);
         Rgb rgb = getPixelRgb(file, x, y);
         if(rgb == null) return 0;
         int r = rgb.isLineColor();
         if(r != 0 && r != -1)   System.out.println("("+x+","+y+"):"+rgb.toString());
         if(r == 0) return 0;
-        if(!rgb.equals(rgbLine1) && !rgb.equals(rgbLine2)) return rgb.equals(rgbWhite) ? -1 : 0;
+        if(r < minLine || r > maxLine) return r == -1 ? -1 : 0;
+//        if(!rgb.equals(rgbLine1) && !rgb.equals(rgbLine2)) return rgb.equals(rgbWhite) ? -1 : 0;
         // 边上的要是白色
         rgb = getPixelRgb(file, 5, y);
 //        System.out.println("(5,"+y+"):"+rgb.toString());
@@ -164,9 +169,13 @@ public class _ReadDFTTAction extends Action {
 
         // 再横向找2个点，如果都是一样的话，则表示找到了
         rgb = getPixelRgb( file, 540, y);
-        if(rgb == null || (!rgb.equals(rgbLine1) && !rgb.equals(rgbLine2))) return 0;
+        if(rgb == null) return 0;
+        r = rgb.isLineColor();
+        if(r < minLine || r > maxLine) return 0;
         rgb = getPixelRgb( file, x+400, y);
-        if(rgb == null || (!rgb.equals(rgbLine1) && !rgb.equals(rgbLine2))) return 0;
+        if(rgb == null) return 0;
+        r = rgb.isLineColor();
+        if(r < minLine || r > maxLine) return 0;
         return 1;
     }
 

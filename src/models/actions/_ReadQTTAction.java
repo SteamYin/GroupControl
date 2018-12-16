@@ -57,7 +57,7 @@ public class _ReadQTTAction extends Action {
         // 非广告，开始阅读
         int n = 0;
 
-        while(n++ < 20){
+        while(n++ < 10){
             long now = System.currentTimeMillis() / 1000;
             if(now - start >= 300) return step2;    // 超出5分钟，需要返回到主流程
             sleep(3000);

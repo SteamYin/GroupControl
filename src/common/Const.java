@@ -18,6 +18,9 @@ public class Const {
     public static String dftt_pkg = "com.songheng.eastnews";
     public static String dftt_activity = "com.oa.eastfirst.activity.WelcomeActivity";
 
+    public static String htt_pkg = "com.cashtoutiao";
+    public static String htt_activity = "com.cashtoutiao.common.ui.SplashActivity";
+
     public static int flow_type_clear = 100;    // 清除缓存的流程id
 
     public class DeviceStatus{

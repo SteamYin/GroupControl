@@ -8,14 +8,7 @@ capscreen true
 read:launch 2
 sleep 15000
 
-#点击时段领取
-ocr 950,90 1035,130 "领取" get hot
-get:tap 1 990,118
-
-sleep 3000
-
-#首页，进入热点
-hot:tap 1 558,225
+tap 1 558,225
 
 sleep 5000
 

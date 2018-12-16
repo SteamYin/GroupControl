@@ -26,6 +26,8 @@ public class KillAction extends Action {
             ADBUtils.stopApp(device.serialnumber, Const.qtt_pkg);
         else if(app_type == 2)
             ADBUtils.stopApp(device.serialnumber, Const.dftt_pkg);
+        else if(app_type == 3)
+            ADBUtils.stopApp(device.serialnumber, Const.htt_pkg);
         return "";
     }
 
