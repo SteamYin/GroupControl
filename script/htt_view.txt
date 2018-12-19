@@ -1,0 +1,40 @@
+#需保存成GBK，即ANSI编码
+memo 测试
+mobile MI 5S Plus
+screen 1080x1920
+timeout 1200
+capscreen true
+
+read:launch 3
+sleep 15000
+
+keyevent 4
+
+sleep 3000
+tap 1 558,225
+
+sleep 5000
+
+#点击刷新
+tap 1 100,1838
+
+sleep 5000
+#点击第一个
+tap 1 486,538
+
+sleep 8000
+#读文章，并且找下一篇文章
+continue:_readhtt [aa] next last
+
+next:tap 1 [aa]
+
+sleep 3000
+goto continue
+
+#流程超时
+timeout:goto last
+
+#结束进程
+last:kill 3
+sleep 3000
+goto 1-start

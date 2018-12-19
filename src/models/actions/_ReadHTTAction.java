@@ -87,7 +87,7 @@ public class _ReadHTTAction extends Action {
             if (point2 == null) return null;
 
             logger.info("找到分割线2："+point2.getY());
-            if (point1.getY() - point2.getY() > 420){
+            if (point1.getY() - point2.getY() > 450){
                 logger.info("分割线范围不对："+(point1.getY() - point2.getY()));
                 // 正常应该是255-265
                 point1 = point2;
@@ -125,21 +125,26 @@ public class _ReadHTTAction extends Action {
     }
     private boolean isAd(Device device, File file, int y){
         // x = 980, y = [30,60]
-        Rgb rgbWhite = new Rgb(-1,-1,-1);
-        int x = 980;
-        int oldY = y;
-        y -= 30;
-        while(oldY - y < 60){
-            moveScreen(device);
-            Rgb rgb = getPixelRgb(file, x, y);
-            if(rgb == null){
-                y -= 3;
-                continue;
-            }
-//            System.out.println("("+x+","+y+"):"+rgb.toString());
-            y -= 3;
-            if(!rgb.equals(rgbWhite)) return true;
-        }
+//        Rgb rgbWhite = new Rgb(-1,-1,-1);
+//        int x = 980;
+//        int oldY = y;
+//        y -= 24;
+//        while(oldY - y < 38){
+//            moveScreen(device);
+//            Rgb rgb = getPixelRgb(file, x, y);
+//            if(rgb == null){
+//                y -= 3;
+//                continue;
+//            }
+////            System.out.println("("+x+","+y+"):"+rgb.toString());
+//            y -= 3;
+//            if(!rgb.equals(rgbWhite)) return true;
+//        }
+
+        String result = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 30,y - 64,82, 44, false);
+        if(result.equals("广告")) return true;
+        OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 945,y - 57,60, 33, false);
+        if(result.equals("广告")) return true;
         return false;
     }
 
