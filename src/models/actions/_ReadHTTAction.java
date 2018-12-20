@@ -23,7 +23,7 @@ public class _ReadHTTAction extends Action {
     private static Logger logger = LogManager.getLogger(_ReadHTTAction.class);
     public _ReadHTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
         super(name, stepid, memo, flow);
-        this.type = Const.ActionType._READ_DFTT;
+        this.type = Const.ActionType._READ_HTT;
         this.tag = "readhtt";
 
         if(param.length < 3) return;
