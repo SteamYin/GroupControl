@@ -4,8 +4,12 @@ mobile MI 5S Plus
 screen 1080x1920
 capscreen false
 
+start:kill 1
+kill 2
+kill 3
+
 #获取任务流程id
-start:_getflow [flow] ok __FAIL__
+_getflow [flow] ok __FAIL__
 
 #进入任务流程
 ok:goto [flow]

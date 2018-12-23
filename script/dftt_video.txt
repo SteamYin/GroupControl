@@ -1,0 +1,41 @@
+#需保存成GBK，即ANSI编码
+memo 测试
+mobile MI 5S Plus
+screen 1080x1920
+restart 50
+capscreen true
+
+read:launch 2
+sleep 12000
+
+#点击时段领取
+#ocr 972,90 1038,130 "领取" get video
+#get:tap 1 990,118
+
+#sleep 3000
+
+#首页，进入视频
+video:tap 1 360,225
+
+sleep 5000
+
+#播放第一个视频
+tap 1 540,500
+
+wait:sleep 2000
+
+#检查进度
+rgb 600,660 244,75,80 next wait
+
+#点击下一个
+next:sleep 10000
+tap 1 540,1780
+goto wait
+
+#流程超时
+timeout:goto last
+
+#结束进程
+last:kill 2
+sleep 3000
+goto 1-start

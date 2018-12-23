@@ -53,6 +53,7 @@ public class Const {
         public static final int _PLAY_QTT = 103;
         public static final int _READ_DFTT = 104;
         public static final int _PLAY_DFTT = 105;
+        public static final int _READ_HTT = 106;
 
     }
 //    public class TaskStatus{

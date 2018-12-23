@@ -196,7 +196,9 @@ public class Task implements Cloneable {
                 long startAction = System.currentTimeMillis() / 1000;
                 String stepName = action.doAction(device);
                 if(action.type == Const.ActionType._READ_QTT
-                    || action.type == Const.ActionType._PLAY_QTT){
+                    || action.type == Const.ActionType._PLAY_QTT
+                    || action.type == Const.ActionType._READ_DFTT
+                    || action.type == Const.ActionType._READ_HTT){
                     long endAction = System.currentTimeMillis() / 1000;
                     device.addFlowTimeLen(flow.type, endAction - startAction);
                 }
@@ -238,6 +240,13 @@ public class Task implements Cloneable {
                         // 跳转到其他流程的指定状态下
                         int _type = Integer.parseInt(fs[0]);
                         if(_type != type) {
+
+                            if(_type == 1 &&
+                                    (type == 3 || type == 6 || type == 7)){
+                                long endAction = System.currentTimeMillis() / 1000;
+                                device.addFlowTimeLen(type, endAction - start);
+                            }
+
                             type = _type;
                             // 流程变了，重新开始计时
                             logMesg("跳转到流程["+type+"]!");

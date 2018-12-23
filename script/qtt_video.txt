@@ -5,17 +5,40 @@ screen 1080x1920
 restart 50
 capscreen true
 
-launch 2
-sleep 8000
+read:launch 1
+sleep 12000
 
-#read:_readqtt [aa] next fail
-read:_readdftt [aa] next fail
+keyevent 4
+sleep 2000
 
-next:tap 1 [aa]
+#点击时段领取
+ocr 972,90 1038,130 "领取" get video
+get:tap 1 990,118
+
 sleep 3000
-goto read
 
-#swipe 300,800 300,400 3000
-#sleep 6000
+#首页，进入视频
+video:tap 1 248,225
 
-#swipe 300,1300 300,800 3000
+sleep 5000
+
+#下滑刷新
+next:swipe 540,580 580,1032 800
+
+sleep 5000
+
+#播放第一个视频
+play:tap 1 540,500
+
+sleep 30000-60000
+
+goto next
+
+
+#流程超时
+timeout:goto last
+
+#结束进程
+last:kill 1
+sleep 3000
+goto 1-start

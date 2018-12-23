@@ -11,25 +11,27 @@ sleep 12000
 keyevent 4
 
 sleep 3000
-tap 1 558,225
+#点击视频
+tap 1 310,1852
 
 sleep 5000
 
-#点击刷新
-tap 1 100,1838
+#下滑刷新
+refresh:swipe 540,580 580,1032 800
 
-sleep 5000
+sleep 3000
 #点击第一个
 tap 1 486,538
 
-sleep 8000
-#读文章，并且找下一篇文章
-continue:_readhtt [aa] next last
+wait:sleep 2000
 
-next:tap 1 [aa]
+#进度检查
+rgb 600,631 251,59,59 next wait
 
-sleep 3000
-goto continue
+#返回
+next:sleep 10000
+keyevent 4
+goto refresh
 
 #流程超时
 timeout:goto last

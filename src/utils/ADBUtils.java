@@ -233,7 +233,7 @@ public class ADBUtils {
         $ adb pull /sdcard/screen.png ./
         $ adb shell rm /sdcard/screen.png
          */
-        final String path = (Const.path_screen  + CommonUtils.date2String(new Date(), "yyyyMMdd") + "/" + devicename + "/" + task + "/").replace("/", File.separator).replace("\\", File.separator);
+        final String path = (Const.path_screen  + CommonUtils.date2String(new Date(), "yyyyMMdd/HH") + "/" + devicename + "/" + task + "/").replace("/", File.separator).replace("\\", File.separator);
         final String _name = CommonUtils.date2String(new Date(), "HHmmss_SSS");
 
         if (inthread) {
@@ -260,7 +260,7 @@ public class ADBUtils {
 //    }
 
     public static void copyScreenCap(String src, String serialnumber, String devicename, String task) {
-        final String path = (Const.path_screen  + CommonUtils.date2String(new Date(), "yyyyMMdd") + "/" + devicename + "/" + task + "/").replace("/", File.separator).replace("\\", File.separator);
+        final String path = (Const.path_screen  + CommonUtils.date2String(new Date(), "yyyyMMdd/HH") + "/" + devicename + "/" + task + "/").replace("/", File.separator).replace("\\", File.separator);
         final String _name = CommonUtils.date2String(new Date(), "HHmmss_SSS");
         new Thread(new Runnable() {
             @Override

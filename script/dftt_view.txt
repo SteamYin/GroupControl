@@ -6,7 +6,7 @@ timeout 1200
 capscreen true
 
 read:launch 2
-sleep 15000
+sleep 12000
 
 tap 1 558,225
 
