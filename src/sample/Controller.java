@@ -686,8 +686,10 @@ public class Controller {
         if(CommonUtils.isNull(currentSerialNumber)) return;
         Device device = dicDevice.get(currentSerialNumber);
         if(device.status == Const.DeviceStatus.OFFLINE) return; // 掉线状态
-        device.addNewTask(new Task("阅读赚钱", device,1,"", "", "",this));
         Task task = device.task;
+        task.close();
+        device.addNewTask(new Task("阅读赚钱", device,1,"", "", "",this));
+        task = device.task;
         if(task == null) return;
         task.reset();
         task.setStatus(Const.TaskStatus.RUNNING.getCode());

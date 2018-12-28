@@ -41,6 +41,7 @@ public class _ReadDFTTAction extends Action {
     public String doAction(Device device) {
         super.doAction(device);
         // 超过5分钟就会提醒阅读这篇文章时间太长
+        long start = System.currentTimeMillis() / 1000;
 
         // 先判断是否为广告
         device.task.capscreenname = ADBUtils.screenCap(device.serialnumber,device.getDeviceName(),
@@ -53,8 +54,11 @@ public class _ReadDFTTAction extends Action {
         int n = 0;
 
         while(n++ < 10){
-            logger.info("n="+n);
+            if(!device.task.isRunning()) return step2;
+            long now = System.currentTimeMillis() / 1000;
+            if(now - start >= 300) return step2;    // 超出5分钟，需要返回到主流程
             sleep(3000);
+            if(!device.task.isRunning()) return step2;
 //            ADBUtils.swipeInput(device.serialnumber, 600, 1770, 620, 190, 2000);
             ADBUtils.swipeInput(device.serialnumber, 600, 1770, 620, 590, 2000);
             if(n > 2) {
@@ -83,6 +87,7 @@ public class _ReadDFTTAction extends Action {
         logger.info("找到分割线1："+point1.getY());
         // 找上面一条线
         while(true) {
+            if(!device.task.isRunning()) return null;
             Point point2 = findLine(device, file, point1.getY()- 260, 450);
             if (point2 == null) return null;
 

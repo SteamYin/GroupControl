@@ -296,6 +296,9 @@ public class Task implements Cloneable {
         this.running = false;
     }
 
+    public boolean isRunning(){
+        return this.running;
+    }
     /**
      * 用于保存到配置
      * @return

@@ -130,18 +130,18 @@ public class Device implements Comparable<Device> {
         flowTimeLens.add(new FlowTimeLen(2, 0, 3000));
 
         // 趣头条视频
-        flowTimeLens.add(new FlowTimeLen(3, 0, 3000));
+//        flowTimeLens.add(new FlowTimeLen(3, 0, 3000));
 
         // 东方头条
         flowTimeLens.add(new FlowTimeLen(4, 0, 3000));
 
 //         东方头条视频
-        flowTimeLens.add(new FlowTimeLen(6, 0, 3000));
+//        flowTimeLens.add(new FlowTimeLen(6, 0, 3000));
 
         // 惠头条
         flowTimeLens.add(new FlowTimeLen(5, 0, 3000));
 //        // 惠头条视频
-        flowTimeLens.add(new FlowTimeLen(7, 0, 3000));
+//        flowTimeLens.add(new FlowTimeLen(7, 0, 3000));
 
         return flowTimeLens;
     }
