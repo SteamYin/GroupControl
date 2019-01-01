@@ -149,6 +149,10 @@ public class Device implements Comparable<Device> {
 
         // 搜狐资讯
         flowTimeLens.add(new FlowTimeLen(9, 0, 1500));
+
+
+        // 趣看天下
+        flowTimeLens.add(new FlowTimeLen(10, 0, 1500));
         return flowTimeLens;
     }
 

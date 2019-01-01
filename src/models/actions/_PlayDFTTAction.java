@@ -44,7 +44,7 @@ public class _PlayDFTTAction extends Action {
         while(true){
             if(!device.task.isRunning()) return step2;
             long now = System.currentTimeMillis() / 1000;
-            if(now - start >= 900) return step2;    // 超出15分钟，需要返回到主流程
+            if(now - start >= 600) return step2;    // 超出10分钟，需要返回到主流程
             sleep(3000);
             if(pos > 0) {
                 if((now - start) >= (pos - start - 1) * 10){ // 播放结束

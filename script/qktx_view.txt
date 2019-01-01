@@ -1,0 +1,63 @@
+#需保存成GBK，即ANSI编码
+memo 测试
+mobile MI 5S Plus
+screen 1080x1920
+timeout 1200
+capscreen true
+
+read:launch 6
+sleep 12000
+
+tap 1 73,228
+sleep 2000
+
+
+ocr 950,94 1023,140 "领取" get hot
+get:tap 1 964,113
+
+sleep 2000
+keyevent 4
+sleep 1500
+
+#首页，进入娱乐
+hot:tap 1 370,228
+
+sleep 5000
+
+#点击刷新
+refresh:tap 1 167,1838
+
+sleep 5000
+
+#点击第一个
+tap 1 486,405
+
+sleep 5000
+
+
+#判断是不是文章
+ocr 853,89 1015,138 "字体调节" continue back
+
+back:keyevent 4
+
+sleep 2000
+
+goto refresh
+
+
+#读文章，并且找下一篇文章
+continue:_readqktx [aa] next last
+
+next:tap 1 [aa]
+
+sleep 3000
+
+ocr 853,89 1015,138 "字体调节" continue last
+
+#流程超时
+timeout:goto last
+
+#结束进程
+last:kill 6
+sleep 3000
+goto 1-start

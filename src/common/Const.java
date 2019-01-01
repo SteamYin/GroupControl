@@ -27,6 +27,9 @@ public class Const {
     public static String shzx_pkg = "com.sohu.infonews";
     public static String shzx_activity = "com.sohu.quicknews.splashModel.activity.SplashActivity";
 
+    public static String qktx_pkg = "com.yanhui.qktx";
+    public static String qktx_activity = "com.yanhui.qktx.activity.SplashActivity";
+
     public static int flow_type_clear = 100;    // 清除缓存的流程id
 
     public class DeviceStatus{
@@ -62,6 +65,7 @@ public class Const {
         public static final int _READ_HTT = 106;
         public static final int _READ_ZQKD = 107;
         public static final int _READ_SHZX = 108;
+        public static final int _READ_QKTX = 108;
 
     }
 //    public class TaskStatus{

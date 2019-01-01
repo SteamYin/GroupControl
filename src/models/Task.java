@@ -199,6 +199,7 @@ public class Task implements Cloneable {
                     || action.type == Const.ActionType._PLAY_DFTT
                     || action.type == Const.ActionType._READ_DFTT
                     || action.type == Const.ActionType._READ_HTT
+                        || action.type == Const.ActionType._READ_QKTX
                         || action.type == Const.ActionType._READ_ZQKD
                         || action.type == Const.ActionType._READ_SHZX){
                     long endAction = System.currentTimeMillis() / 1000;

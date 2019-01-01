@@ -27,7 +27,7 @@ public class _ReadQTTAction extends Action {
     private static Logger logger = LogManager.getLogger(_ReadQTTAction.class);
     public _ReadQTTAction(String name, int stepid, String memo, Flow flow, String[] param) {
         super(name, stepid, memo, flow);
-        this.type = Const.ActionType._PLAY_QTT;
+        this.type = Const.ActionType._READ_QTT;
         this.tag = "readqtt";
 
         if(param.length < 3) return;

@@ -32,6 +32,8 @@ public class LaunchAction extends Action {
             ADBUtils.startApp(device.serialnumber, Const.zqkd_pkg, Const.zqkd_activity);
         else if(app_type == 5)
             ADBUtils.startApp(device.serialnumber, Const.shzx_pkg, Const.shzx_activity);
+        else if(app_type == 6)
+            ADBUtils.startApp(device.serialnumber, Const.qktx_pkg, Const.qktx_activity);
         return "";
     }
 
