@@ -193,6 +193,16 @@ public class Flow {
                         stepid++;
                         actionMemo = "";
                     }
+                    else if(ss[0].equals("_readzqkd")){
+                        listAction.add(new _ReadZQKDAction(name, stepid, actionMemo,this, ss));
+                        stepid++;
+                        actionMemo = "";
+                    }
+                    else if(ss[0].equals("_readshzx")){
+                        listAction.add(new _ReadSHZXAction(name, stepid, actionMemo,this, ss));
+                        stepid++;
+                        actionMemo = "";
+                    }
                     else if(ss[0].equals("_playqtt")){
                         listAction.add(new _PlayQTTAction(name, stepid, actionMemo,this, ss));
                         stepid++;

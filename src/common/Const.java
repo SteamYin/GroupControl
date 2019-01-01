@@ -21,6 +21,12 @@ public class Const {
     public static String htt_pkg = "com.cashtoutiao";
     public static String htt_activity = "com.cashtoutiao.common.ui.SplashActivity";
 
+    public static String zqkd_pkg = "cn.youth.news";
+    public static String zqkd_activity = "com.weishang.wxrd.activity.SplashActivity";
+
+    public static String shzx_pkg = "com.sohu.infonews";
+    public static String shzx_activity = "com.sohu.quicknews.splashModel.activity.SplashActivity";
+
     public static int flow_type_clear = 100;    // 清除缓存的流程id
 
     public class DeviceStatus{
@@ -54,6 +60,8 @@ public class Const {
         public static final int _READ_DFTT = 104;
         public static final int _PLAY_DFTT = 105;
         public static final int _READ_HTT = 106;
+        public static final int _READ_ZQKD = 107;
+        public static final int _READ_SHZX = 108;
 
     }
 //    public class TaskStatus{

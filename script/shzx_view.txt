@@ -5,31 +5,25 @@ screen 1080x1920
 timeout 1200
 capscreen true
 
-read:launch 1
+read:launch 5
 sleep 12000
 
 keyevent 4
 sleep 2000
 
-#点击时段领取
-ocr 972,90 1038,130 "领取" get hot
-get:tap 1 990,118
-
-sleep 3000
-
 #首页，进入娱乐
-hot:tap 1 874,225
+hot:tap 1 507,254
 
 sleep 5000
 
 #点击刷新
-refresh:tap 1 100,1838
+refresh:tap 1 167,1838
 
 sleep 5000
 
 
 #点击第一个
-tap 1 486,538
+tap 1 486,405
 
 sleep 5000
 
@@ -46,7 +40,7 @@ goto refresh
 nextpoint:rgb 545,100 255,255,255 continue back
 
 #读文章，并且找下一篇文章
-continue:_readqtt [aa] next last
+continue:_readshzx [aa] next last
 
 next:tap 1 [aa]
 
@@ -57,6 +51,6 @@ goto continue
 timeout:goto last
 
 #结束进程
-last:kill 1
+last:kill 5
 sleep 3000
 goto 1-start

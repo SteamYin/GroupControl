@@ -31,7 +31,7 @@ public class RgbAction extends Action {
         super.doAction(device);
         if (device.task == null || CommonUtils.isNull(device.task.capscreenname)) return "";
         int pixel = ImageUtils.getPixel( device.task.capscreenname, point.getX(), point.getY());
-        if(pixel == -1) return step2;
+//        if(pixel == -1) return step2;
         Rgb _rgb = new Rgb(pixel);
         return this.rgb.equals(_rgb) ? step1 : step2;
     }

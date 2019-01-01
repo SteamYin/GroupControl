@@ -24,13 +24,22 @@ tap 1 540,500
 
 wait:sleep 2000
 
+#看视频
+continue:_playdftt [aa] next last
+
+
+next:tap 1 [aa]
+
+sleep 3000
+goto continue
+
 #检查进度
-rgb 600,660 244,75,80 next wait
+#rgb 600,660 244,75,80 next wait
 
 #点击下一个
-next:sleep 10000
-tap 1 540,1780
-goto wait
+#next:sleep 10000
+#tap 1 540,1780
+#goto wait
 
 #流程超时
 timeout:goto last

@@ -129,22 +129,6 @@ public class _ReadHTTAction extends Action {
         lastMoveTime = new Date();
     }
     private boolean isAd(Device device, File file, int y){
-        // x = 980, y = [30,60]
-//        Rgb rgbWhite = new Rgb(-1,-1,-1);
-//        int x = 980;
-//        int oldY = y;
-//        y -= 24;
-//        while(oldY - y < 38){
-//            moveScreen(device);
-//            Rgb rgb = getPixelRgb(file, x, y);
-//            if(rgb == null){
-//                y -= 3;
-//                continue;
-//            }
-////            System.out.println("("+x+","+y+"):"+rgb.toString());
-//            y -= 3;
-//            if(!rgb.equals(rgbWhite)) return true;
-//        }
 
         String result = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 30,y - 64,82, 44, false);
         if(result.equals("广告")) return true;
@@ -164,13 +148,13 @@ public class _ReadHTTAction extends Action {
 //        Rgb rgbLine2 = new Rgb(244, 244, 244);
         int minLine = 235;
         int maxLine = 253;
-        Rgb rgbWhite = new Rgb(-1,-1,-1);
+        Rgb rgbWhite = new Rgb(255,255,255);
         Rgb rgb = getPixelRgb(file, x, y);
         if(rgb == null) return 0;
         int r = rgb.isLineColor();
-        if(r != 0 && r != -1)   System.out.println("("+x+","+y+"):"+rgb.toString());
+        if(r != 0 && r != 255)   System.out.println("("+x+","+y+"):"+rgb.toString());
         if(r == 0) return 0;
-        if(r < minLine || r > maxLine) return r == -1 ? -1 : 0;
+        if(r < minLine || r > maxLine) return r == 255 ? -1 : 0;
 //        if(!rgb.equals(rgbLine1) && !rgb.equals(rgbLine2)) return rgb.equals(rgbWhite) ? -1 : 0;
         // 边上的要是白色
         rgb = getPixelRgb(file, 5, y);

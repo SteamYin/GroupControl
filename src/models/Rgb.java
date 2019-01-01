@@ -16,16 +16,9 @@ public class Rgb {
     }
 
     public Rgb(int pixel){
-        if(pixel == -1) {
-            r = -1;
-            g = -1;
-            b = -1;
-        }
-        else{
-            r = (pixel & 0xff0000) >> 16;
-            g = (pixel & 0xff00) >> 8;
-            b = (pixel & 0xff);
-        }
+        r = (pixel & 0xff0000) >> 16;
+        g = (pixel & 0xff00) >> 8;
+        b = (pixel & 0xff);
     }
     public Rgb(String rgb){
         rgb = rgb.replace("(","").replace(")","");

@@ -28,6 +28,10 @@ public class LaunchAction extends Action {
             ADBUtils.startApp(device.serialnumber, Const.dftt_pkg, Const.dftt_activity);
         else if(app_type == 3)
             ADBUtils.startApp(device.serialnumber, Const.htt_pkg, Const.htt_activity);
+        else if(app_type == 4)
+            ADBUtils.startApp(device.serialnumber, Const.zqkd_pkg, Const.zqkd_activity);
+        else if(app_type == 5)
+            ADBUtils.startApp(device.serialnumber, Const.shzx_pkg, Const.shzx_activity);
         return "";
     }
 
