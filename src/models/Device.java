@@ -172,12 +172,20 @@ public class Device implements Comparable<Device> {
     public int getFlowType() {
         if(listFlowTimeLen == null || listFlowTimeLen.size() == 0) return 0;
 
-        int index = CommonUtils.getRandomNum(0, listFlowTimeLen.size() - 1);
+        double f = -1;
+        int index = 0;
+//        int index = CommonUtils.getRandomNum(0, listFlowTimeLen.size() - 1);
         for(int i = 0; i < listFlowTimeLen.size(); i++){
-            int id = (i + index) % listFlowTimeLen.size();
-            FlowTimeLen flowTimeLen = listFlowTimeLen.get(id);
-            if(flowTimeLen.getTimelen() > flowTimeLen.getMaxtime()) continue;
-            return flowTimeLen.getType();
+            FlowTimeLen flowTimeLen = listFlowTimeLen.get(i);
+            double _f =  flowTimeLen.getTimelen() * 1.0 / flowTimeLen.getMaxtime();
+            if(_f < f || f == -1) {
+                f = _f;
+                index = i;
+            }
+//            int id = (i + index) % listFlowTimeLen.size();
+//            FlowTimeLen flowTimeLen = listFlowTimeLen.get(id);
+//            if(flowTimeLen.getTimelen() > flowTimeLen.getMaxtime()) continue;
+//            return flowTimeLen.getType();
         }
 
         return listFlowTimeLen.get(index).getType();

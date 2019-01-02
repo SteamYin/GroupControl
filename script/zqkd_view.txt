@@ -2,7 +2,7 @@
 memo ≤‚ ‘
 mobile MI 5S Plus
 screen 1080x1920
-timeout 1200
+timeout 800
 capscreen true
 
 read:launch 4
