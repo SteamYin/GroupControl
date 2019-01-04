@@ -127,7 +127,7 @@ public class Device implements Comparable<Device> {
         List<FlowTimeLen> flowTimeLens = new ArrayList<>();
 
         // 趣头条新闻
-        flowTimeLens.add(new FlowTimeLen(2, 0, 3000));
+        flowTimeLens.add(new FlowTimeLen(2, 0, 2500));
 
         // 趣头条视频
 //        flowTimeLens.add(new FlowTimeLen(3, 0, 3000));
@@ -139,12 +139,12 @@ public class Device implements Comparable<Device> {
         flowTimeLens.add(new FlowTimeLen(6, 0, 3000));
 
         // 惠头条
-        flowTimeLens.add(new FlowTimeLen(5, 0, 3000));
+        flowTimeLens.add(new FlowTimeLen(5, 0, 2500));
 //        // 惠头条视频
 //        flowTimeLens.add(new FlowTimeLen(7, 0, 3000));
 
         // 中青看点
-        flowTimeLens.add(new FlowTimeLen(8, 0, 3000));
+        flowTimeLens.add(new FlowTimeLen(8, 0, 2000));
 
 
         // 搜狐资讯
