@@ -30,6 +30,9 @@ public class Const {
     public static String qktx_pkg = "com.yanhui.qktx";
     public static String qktx_activity = "com.yanhui.qktx.activity.SplashActivity";
 
+    public static String hstt_pkg = "com.xcm.huasheng";
+    public static String hstt_activity = "com.xcm.huasheng.ui.activity.SplashActivity";
+
     public static int flow_type_clear = 100;    // 清除缓存的流程id
 
     public class DeviceStatus{
@@ -65,7 +68,8 @@ public class Const {
         public static final int _READ_HTT = 106;
         public static final int _READ_ZQKD = 107;
         public static final int _READ_SHZX = 108;
-        public static final int _READ_QKTX = 108;
+        public static final int _READ_QKTX = 109;
+        public static final int _READ_HSTT = 110;
 
     }
 //    public class TaskStatus{

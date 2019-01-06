@@ -50,10 +50,10 @@ public class _ReadQKTXAction extends _ReadAction {
     protected boolean isAd(Device device, File file, int bottom, int top){
         String text = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 954, bottom - 85, 85, 40, false);
         logger.info("广告判断识别结果："+text);
-        if(text.indexOf("广告") != -1 && text.indexOf("厂告") != -1) return true;
+        if(text.indexOf("广告") != -1 || text.indexOf("厂告") != -1) return true;
         text = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 954, bottom - 56, 60, 40, false);
         logger.info("广告判断识别结果："+text);
-        if(text.indexOf("广告") != -1 && text.indexOf("厂告") != -1) return true;
+        if(text.indexOf("广告") != -1 || text.indexOf("厂告") != -1) return true;
         return false;
     }
 }

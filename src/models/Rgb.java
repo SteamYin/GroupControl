@@ -30,7 +30,7 @@ public class Rgb {
     }
 
     public int isLineColor(){
-        return (this.r == this.b && this.r == this.g) ? this.r : 0;
+        return (Math.abs(this.r - this.b) < 2 && Math.abs(this.r - this.g) < 2) ? this.r : 0;
     }
     public boolean equals(Rgb rgb){
 //        if(this.r == -1 || rgb.r == -1

@@ -1,0 +1,54 @@
+#需保存成GBK，即ANSI编码
+memo 测试
+mobile MI 5S Plus
+screen 1080x1920
+timeout 800
+capscreen true
+
+read:launch 7
+sleep 10000
+
+#keyevent 4
+#sleep 2000
+
+#首页，进入娱乐
+hot:tap 1 525,243
+
+sleep 5000
+
+#下拉刷新
+refresh:swipe 540,580 580,1032 800
+
+sleep 4000
+
+#点击第二个
+tap 1 486,705
+
+sleep 5000
+
+
+#判断是不是文章，可能是视频
+continue:ocr 712,1827 796,1870 "评论" continue1 back
+
+back:keyevent 4
+
+sleep 2000
+
+goto refresh
+
+
+#读文章，并且找下一篇文章
+continue1:_readhstt [aa] next last
+
+next:tap 1 [aa]
+
+sleep 3000
+goto continue
+
+#流程超时
+timeout:goto last
+
+#结束进程
+last:kill 7
+sleep 3000
+goto 1-start

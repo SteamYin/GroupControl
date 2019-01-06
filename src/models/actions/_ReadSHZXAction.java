@@ -53,7 +53,7 @@ public class _ReadSHZXAction extends _ReadAction {
     protected boolean isAd(Device device, File file, int bottom, int top){
         String text = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 50, bottom - 81, 65, 33, false);
         logger.info("广告判断识别结果："+text);
-        if(text.indexOf("广告") != -1 && text.indexOf("厂告") != -1) return true;
+        if(text.indexOf("广告") != -1 || text.indexOf("厂告") != -1) return true;
         return false;
     }
 

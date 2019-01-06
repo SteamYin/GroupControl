@@ -195,13 +195,14 @@ public class Task implements Cloneable {
 
                 long startAction = System.currentTimeMillis() / 1000;
                 String stepName = action.doAction(device);
-                if(action.type == Const.ActionType._READ_QTT
-                    || action.type == Const.ActionType._PLAY_DFTT
-                    || action.type == Const.ActionType._READ_DFTT
-                    || action.type == Const.ActionType._READ_HTT
-                        || action.type == Const.ActionType._READ_QKTX
-                        || action.type == Const.ActionType._READ_ZQKD
-                        || action.type == Const.ActionType._READ_SHZX){
+//                if(action.type == Const.ActionType._READ_QTT
+//                    || action.type == Const.ActionType._PLAY_DFTT
+//                    || action.type == Const.ActionType._READ_DFTT
+//                    || action.type == Const.ActionType._READ_HTT
+//                        || action.type == Const.ActionType._READ_QKTX
+//                        || action.type == Const.ActionType._READ_ZQKD
+//                        || action.type == Const.ActionType._READ_SHZX){
+                if(action.type >= Const.ActionType._READ_QTT){
                     long endAction = System.currentTimeMillis() / 1000;
                     device.addFlowTimeLen(flow.type, endAction - startAction);
                 }

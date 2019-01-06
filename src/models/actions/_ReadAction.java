@@ -140,7 +140,8 @@ public class _ReadAction extends Action {
             logger.info("找到分割线2："+point2.getY());
 
             // 判断是不是广告，是广告，继续往下找
-            if(isAd(device, file, point1.getY(), point2.getY())){
+            boolean b = isAd(device, file, point1.getY(), point2.getY());
+            if(b){
                 point1 = point2;
                 logger.info("内容为广告，继续找");
                 continue;
