@@ -57,6 +57,17 @@ public class _ReadZQKDAction extends _ReadAction {
         String text = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 35, bottom - 87, 215, 50, false);
         logger.info("广告判断识别结果："+text);
         if(text.indexOf("广告") != -1 || text.indexOf("厂告") != -1) return true;
+
+        text = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 983, bottom - 70, 67, 40, false);
+        logger.info("广告判断识别结果："+text);
+        if(text.indexOf("广告") != -1 || text.indexOf("厂告") != -1) return true;
+
+
+        text = OcrUtils.doSingleLineOrc(device.serialnumber, device.task.capscreenname, 970, bottom - 70, 65, 40, false);
+        logger.info("广告判断识别结果："+text);
+        if(text.indexOf("广告") != -1 || text.indexOf("厂告") != -1) return true;
+
+
         return false;
     }
 }

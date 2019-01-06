@@ -29,7 +29,8 @@ sleep 5000
 
 
 #判断是不是文章，可能是视频
-rgb 145,122 255,255,255 nextpoint back
+#rgb 145,122 255,255,255 nextpoint back
+continue:ocr 80,1840 190,1880 "写评论" continue1 back
 
 back:keyevent 4
 
@@ -37,10 +38,10 @@ sleep 2000
 
 goto refresh
 
-nextpoint:rgb 545,100 255,255,255 continue back
+#nextpoint:rgb 545,100 255,255,255 continue back
 
 #读文章，并且找下一篇文章
-continue:_readzqkd [aa] next last
+continue1:_readzqkd [aa] next last
 
 next:tap 1 [aa]
 
