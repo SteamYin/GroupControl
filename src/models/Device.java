@@ -126,35 +126,35 @@ public class Device implements Comparable<Device> {
     private List<FlowTimeLen> initFlowTimeLen() {
         List<FlowTimeLen> flowTimeLens = new ArrayList<>();
 
-        // 趣头条新闻
-        flowTimeLens.add(new FlowTimeLen(2, 0, 2500));
+        // 趣头条新闻 提现11元，1元起提
+        flowTimeLens.add(new FlowTimeLen(2, 0, 3000));
 
         // 趣头条视频
 //        flowTimeLens.add(new FlowTimeLen(3, 0, 3000));
 
-        // 东方头条
+        // 东方头条 提现1元 有提现门槛
         flowTimeLens.add(new FlowTimeLen(4, 0, 3000));
 
 //         东方头条视频
         flowTimeLens.add(new FlowTimeLen(6, 0, 3000));
 
-        // 惠头条
-        flowTimeLens.add(new FlowTimeLen(5, 0, 3500));
+        // 惠头条 不能提现
+     //   flowTimeLens.add(new FlowTimeLen(5, 0, 3500));
 //        // 惠头条视频
 //        flowTimeLens.add(new FlowTimeLen(7, 0, 3000));
 
-        // 中青看点
-        flowTimeLens.add(new FlowTimeLen(8, 0, 2000));
+        // 中青看点 提现1元 10元起提
+        flowTimeLens.add(new FlowTimeLen(8, 0, 3000));
 
 
         // 搜狐资讯
-        flowTimeLens.add(new FlowTimeLen(9, 0, 1500));
+        //flowTimeLens.add(new FlowTimeLen(9, 0, 1500));
 
 
         // 趣看天下
-        flowTimeLens.add(new FlowTimeLen(10, 0, 1500));
+     //   flowTimeLens.add(new FlowTimeLen(10, 0, 1500));
 
-        // 花生头条
+        // 花生头条 提现1元
         flowTimeLens.add(new FlowTimeLen(11, 0, 1500));
         return flowTimeLens;
     }
